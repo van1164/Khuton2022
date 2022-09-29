@@ -16,10 +16,8 @@ class MiseListCreate(generics.ListCreateAPIView):
     queryset = TEST2.objects.all()
     serializer_class = TESTING
 def test(request):
-    reviews = {'id':'21','test':'sfdf','content':'asdf','updated_at':'sdfdf'}
-    serial = TESTING(reviews,many=True)
-    
-    return JsonResponse(serial.data)
+    queryset = TEST2.objects.all()
+    serializer_class = TESTING
 
 def test_main(request):
     return render(request,'main_test.html')
