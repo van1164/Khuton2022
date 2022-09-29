@@ -4,11 +4,17 @@ from django.shortcuts import render,redirect
 from django.http import Http404, JsonResponse
 from django.utils import timezone
 from django.contrib import messages
-
-
-def test(request):
-    data = {'test':"안녕하세요"}
-    return JsonResponse(data,safe=False)
+from requests import Response
+from rest_framework.views import APIView
+from models import TEST
+from serializers import TESTING
+def test(APIView):
+    def get(self,request):
+        reviews = TEST.objects.all()
+        
+        serial = TESTING(reviews,many=True)
+        
+        return Response(serial.data)
 
 def test_main(request):
     return render(request,'main_test.html')
