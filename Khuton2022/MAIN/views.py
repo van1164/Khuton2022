@@ -6,14 +6,14 @@ from django.utils import timezone
 from django.contrib import messages
 from requests import Response
 from rest_framework.views import APIView
-from .models import TEST
+from .models import TEST2
 from .serializers import TESTING
 
 from rest_framework import generics
 
 
 class MiseListCreate(generics.ListCreateAPIView):
-    queryset = TEST.objects.all()
+    queryset = TEST2.objects.all()
     serializer_class = TESTING
 def test(request):
     reviews = {'id':'21','test':'sfdf','content':'asdf','updated_at':'sdfdf'}
