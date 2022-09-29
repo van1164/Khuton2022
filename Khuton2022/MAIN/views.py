@@ -10,7 +10,7 @@ def test(request):
     pass
 
 def test_main(request):
-    return render(request,'test.html')
+    return render(request,'main_test.html')
 
 
 def main_page(request):
