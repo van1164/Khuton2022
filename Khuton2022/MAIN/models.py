@@ -7,4 +7,4 @@ from django.forms import CharField
 class TEST(models.Model):
     test= models.CharField(max_length=50)
     content = models.TextField()
-    updated_at = CharField(max_length=50)
+    updated_at = models.CharField(max_length=50)
