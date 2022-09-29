@@ -6,9 +6,10 @@ from django.utils import timezone
 from django.contrib import messages
 from requests import Response
 from rest_framework.views import APIView
+from yaml import serialize
 from .models import TEST2
 from .serializers import TESTING
-
+from django.core import serializers
 from rest_framework import generics
 
 
@@ -24,7 +25,8 @@ class test(generics.ListCreateAPIView):
 
 def test_main(request):
     queryset = TEST2.objects.all()
-    return JsonResponse(queryset,safe=False)
+    queryset_json = serializers.serialize('json',queryset)
+    return JsonResponse(queryset_json,safe=False)
 
 
 def main_page(request):
