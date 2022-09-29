@@ -1,7 +1,6 @@
 
 # Create your views here.
 from django.shortcuts import render,redirect
-from .models import Account,interior
 from django.http import Http404, JsonResponse
 from django.utils import timezone
 from django.contrib import messages
