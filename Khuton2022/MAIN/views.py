@@ -15,7 +15,8 @@ from rest_framework import generics
 class MiseListCreate(generics.ListCreateAPIView):
     queryset = TEST2.objects.all()
     serializer_class = TESTING
-def test(request):
+    
+class test(generics.ListCreateAPIView):
     queryset = TEST2.objects.all()
     serializer_class = TESTING
 
