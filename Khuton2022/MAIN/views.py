@@ -24,7 +24,7 @@ class test(generics.ListCreateAPIView):
 
 def test_main(request):
     queryset = TEST2.objects.all()
-    return JsonResponse(queryset)
+    return JsonResponse(queryset,safe=False)
 
 
 def main_page(request):
