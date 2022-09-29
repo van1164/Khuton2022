@@ -55,7 +55,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Khuton2022.urls'
-CORS_ORIGIN_WHITELIST = ('http://127.0.0.1:3000', 'http://localhost:3000')
+CORS_ORIGIN_WHITELIST = ('http://127.0.0.1:3000', 'http://localhost:3000','http://ec2-50-18-22-205.us-west-1.compute.amazonaws.com:8080','http://ec2-50-18-22-205.us-west-1.compute.amazonaws.com','localhost:8080')
 CORS_ALLOW_CREDENTIALS = True
 TEMPLATES = [
     {
