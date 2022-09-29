@@ -7,7 +7,8 @@ from django.contrib import messages
 
 
 def test(request):
-    pass
+    data = {'test':"안녕하세요"}
+    return JsonResponse(data,safe=False)
 
 def test_main(request):
     return render(request,'main_test.html')
