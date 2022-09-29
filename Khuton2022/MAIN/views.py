@@ -9,11 +9,10 @@ from rest_framework.views import APIView
 from .models import TEST
 from .serializers import TESTING
 def test(APIView):
-    def get(self,request):
-        reviews = {'id':21,'test':'sfdf','content':'asdf','updated_at':'sdfdf'}
-        serial = TESTING(reviews,many=True)
-        
-        return JsonResponse(serial.data)
+    reviews = {'id':21,'test':'sfdf','content':'asdf','updated_at':'sdfdf'}
+    serial = TESTING(reviews,many=True)
+    
+    return JsonResponse(serial.data)
 
 def test_main(request):
     return render(request,'main_test.html')
