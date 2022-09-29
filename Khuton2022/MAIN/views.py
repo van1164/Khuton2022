@@ -20,8 +20,11 @@ class test(generics.ListCreateAPIView):
     queryset = TEST2.objects.all()
     serializer_class = TESTING
 
+
+
 def test_main(request):
-    return render(request,'main_test.html')
+    queryset = TEST2.objects.all()
+    return JsonResponse(queryset)
 
 
 def main_page(request):
