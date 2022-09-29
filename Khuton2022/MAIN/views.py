@@ -8,6 +8,13 @@ from requests import Response
 from rest_framework.views import APIView
 from .models import TEST
 from .serializers import TESTING
+
+from rest_framework import generics
+
+
+class MiseListCreate(generics.ListCreateAPIView):
+    queryset = TEST.objects.all()
+    serializer_class = TESTING
 def test(request):
     reviews = {'id':'21','test':'sfdf','content':'asdf','updated_at':'sdfdf'}
     serial = TESTING(reviews,many=True)
