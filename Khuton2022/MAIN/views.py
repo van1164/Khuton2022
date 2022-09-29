@@ -6,8 +6,8 @@ from django.utils import timezone
 from django.contrib import messages
 from requests import Response
 from rest_framework.views import APIView
-from models import TEST
-from serializers import TESTING
+from .models import TEST
+from .serializers import TESTING
 def test(APIView):
     def get(self,request):
         reviews = TEST.objects.all()
