@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-qfuo$ur2((x=zb8q0=8n7_33f$$z#%r_nyx#-h*vo7_o^ye(fe
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ec2-50-18-22-205.us-west-1.compute.amazonaws.com','localhost']
+ALLOWED_HOSTS = ['ec2-50-18-22-205.us-west-1.compute.amazonaws.com','localhost','*']
 
 
 # Application definition
@@ -39,10 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'MAIN',
-    'rest_framework'
+    'rest_framework',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -53,7 +55,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Khuton2022.urls'
-
+CORS_ORIGIN_WHITELIST = ('http://127.0.0.1:3000', 'http://localhost:3000')
+CORS_ALLOW_CREDENTIALS = True
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
