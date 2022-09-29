@@ -6,6 +6,14 @@ from django.http import Http404, JsonResponse
 from django.utils import timezone
 from django.contrib import messages
 
+
+def test(request):
+    pass
+
+def test_main(request):
+    return render(request,'test.html')
+
+
 def main_page(request):
     user_id = request.session.get('user')
     data = {'login':False} 
