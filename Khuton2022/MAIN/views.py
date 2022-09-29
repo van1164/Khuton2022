@@ -6,7 +6,6 @@ from django.utils import timezone
 from django.contrib import messages
 from requests import Response
 from rest_framework.views import APIView
-from yaml import serialize
 from .models import TEST2
 from .serializers import TESTING
 from django.core import serializers
