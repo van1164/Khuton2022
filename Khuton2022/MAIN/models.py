@@ -3,7 +3,6 @@ from tabnanny import verbose
 from unittest.util import _MAX_LENGTH
 from django.db import models
 from django.forms import CharField
-import joblib
 
 # Create your models here.
 
