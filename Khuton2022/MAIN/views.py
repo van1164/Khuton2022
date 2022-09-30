@@ -59,6 +59,7 @@ def create_timetable(request):
     final_list = []
     for i in subject_table.objects.all():
         final_list.append([
+            i.Student_ID,
             i.물리학및실험1, 
             i.미분적분학, 
             i.선형대수, 
@@ -136,7 +137,7 @@ def create_timetable(request):
     max = 0
     index = 0
     for a,i in data2.iterrows():
-        sim = cosine_similarity(sunwu, data2.loc[a][2:])
+        sim = cosine_similarity(sunwu, data2.loc[a][1:])
     if sim > max:
         max = sim 
         index = a
