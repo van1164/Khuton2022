@@ -142,10 +142,21 @@ def create_timetable(request):
         max = sim 
         index = a
 
+    return_list = []
     for a, i in enumerate(zip(data2.iloc[index][2:], sunwu)):
         if i[0] <= current_semester and i[0] > 0 and i[1] == 0:
-            print(subjectss[a])
+            return_list.append(subjectss[a])
+            
+    result = []
+    for i in return_list:
+        if everyinfo_table.objects.exists(name = i):
+            n = everyinfo_table.objects.get(name = i)
+            result.append(serializers.serialize('json',n,fields = ('code','name','professor','time','distribution'),ensure_ascii=False))
+            
     
+            
+        
+    return JsonResponse(result ,safe=False,json_dumps_params={'ensure_ascii': False})
     
     
     if request.method =="GET":
@@ -156,6 +167,11 @@ def create_timetable(request):
 def going_lab(request):
     if request.method =="GET":
         uid = request.GET.get("user_id",None)
+        n = User.objects.get(User_ID = uid)
+        n.new_message = True
+        n.save()
+        
+        
         
 
 def main_login(request):
