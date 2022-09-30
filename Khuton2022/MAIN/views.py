@@ -202,7 +202,6 @@ def main_login(request):
                 dic['Nick_Name'] = queryset.Nick_Name
                 dic['Hakgwa'] = queryset.Hakgwa
                 dic['score'] = queryset.score
-                dic['Win'] = queryset.Win
                 dic['point'] = queryset.point
                 dic['etc'] = queryset.etc
                 dic['new_message'] = queryset.etc
