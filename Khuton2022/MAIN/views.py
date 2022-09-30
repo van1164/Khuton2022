@@ -198,7 +198,14 @@ def main_login(request):
                 dic['Professor'] = queryset.Professor
                 dic['User_ID'] = queryset.User_ID
                 dic['User_password'] = queryset.User_password
+                dic['User_email'] = queryset.User_email
                 dic['Nick_Name'] = queryset.Nick_Name
+                dic['Hakgwa'] = queryset.Hakgwa
+                dic['score'] = queryset.score
+                dic['Win'] = queryset.Win
+                dic['point'] = queryset.point
+                dic['etc'] = queryset.etc
+                dic['new_message'] = queryset.etc
                 #queryset_json = serializers.serialize('json',queryset,fields = ('Professor','User_ID','User_password','User_name','User_email','Nick_Name','Hakgwa','score','Win','Hakbun','etc'),ensure_ascii=False)
                 return JsonResponse(dic)
             else:
