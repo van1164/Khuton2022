@@ -6,7 +6,7 @@ from django.utils import timezone
 from django.contrib import messages
 from requests import Response
 from rest_framework.views import APIView
-from .models import TEST2,subject_table
+from .models import TEST2,subject_table,User
 from .serializers import TESTING
 from django.core import serializers
 from rest_framework import generics
@@ -21,9 +21,26 @@ class test(generics.ListCreateAPIView):
     serializer_class = TESTING
 
 class login(generics.ListCreateAPIView):
+    
+    
     queryset = TEST2.objects.all()
     serializer_class = TESTING
 
+
+
+def main_login(request):
+    if request.method =="POST":
+        uid = request.POST.get("userid",None)
+        pw = request.POST.get("password",None)
+        if User.objects.filter(User_ID=uid).exists():
+            n = User.objects.get(User_ID=uid)
+            if n.password == pw:
+                queryset = User.objects.get(User_ID=uid)
+                queryset_json = serializers.serialize('json',queryset,fields = ('Professor','User_ID','User_password','User_name','User_email','Nick_Name','Hakgwa','score','Win','Hakbun'))
+                return JsonResponse(queryset_json,safe=False)
+            else:
+                return JsonResponse({'error':True})
+        return JsonResponse({'error':True})
 
 def making(request):
     subjects = pd.read_csv('subject.csv')
