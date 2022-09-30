@@ -30,7 +30,7 @@ class login(generics.ListCreateAPIView):
 from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
 def main_login(request):
-    print(request.method,request.POST.get("userid",None),request.POST.get("password",None))
+    print(request.POST)
     if request.method =="POST":
         uid = request.POST.get("userid",None)
         pw = request.POST.get("password",None)
