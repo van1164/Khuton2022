@@ -138,15 +138,15 @@ def create_timetable(request):
     index = 0
     sim_list = []
 
-    for a,i in subjects.iterrows():
-    sim = cosine_similarity(sunwu, list(i))
+    for a,i in data2.iterrows():
+    sim = cosine_similarity(sunwu, list(i)[1:])
     sim_list.append(sim)
     if sim > max:
         max = sim 
         index = a
 
     return_list = []
-    for a, i in enumerate(zip(list(subjects.iloc[index]), sunwu)):
+    for a, i in enumerate(zip(list(data2.iloc[index][1:]), sunwu)):
         if i[0] <= current_semester and i[0] > 0 and i[1] == 0:
             return_list.append(subjectss[a])
     
