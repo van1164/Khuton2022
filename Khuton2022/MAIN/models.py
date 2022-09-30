@@ -29,6 +29,7 @@ class User(models.Model):
     Win = models.ManyToManyField(Dahwe)
     Hakbun = models.IntegerField(default = 0)
     point = models.IntegerField(default = 0)
+    etc = models.TextField(default = '')
     def __str__(self) -> str:
         return str(self.Hakbun) + self.User_name
 
