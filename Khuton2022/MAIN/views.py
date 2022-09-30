@@ -146,7 +146,7 @@ def create_timetable(request):
     for a, i in enumerate(zip(data2.iloc[index][2:], sunwu)):
         if i[0] <= current_semester and i[0] > 0 and i[1] == 0:
             return_list.append(subjectss[a])
-            
+    print(return_list)
     result = []
     for i in return_list:
         if everyinfo_table.objects.filter(name=i).exists():
