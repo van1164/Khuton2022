@@ -47,6 +47,13 @@ class everytime_table(models.Model):
     distribution = models.CharField(max_length = 30)    
 
 
+class everyinfo_table(models.Model):
+    code = models.CharField(max_length = 30)
+    name = models.CharField(max_length = 40)
+    professor  = models.CharField(max_length = 30)
+    time = models.CharField(max_length = 70)
+    distribution = models.CharField(max_length = 30)   
+
 class subject_table(models.Model):
     Student_ID = models.IntegerField(default = -1)
     물리학및실험1 = models.IntegerField(default = 0)

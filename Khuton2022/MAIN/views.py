@@ -6,12 +6,13 @@ from django.utils import timezone
 from django.contrib import messages
 from requests import Response
 from rest_framework.views import APIView
-from .models import TEST2,subject_table,User,everytime_table
+from .models import TEST2,subject_table,User,everytime_table,everyinfo_table
 from .serializers import TESTING
 from django.core import serializers
 from rest_framework import generics
 import pandas as pd
 import numpy as np
+
 class MiseListCreate(generics.ListCreateAPIView):
     queryset = TEST2.objects.all()
     serializer_class = TESTING
@@ -44,6 +45,92 @@ def create_soge(request):
 
 
 def create_timetable(request):
+    
+    subjects_basic = ['물리학및실험 1', '미분적분학', '선형대수', '확률및랜덤변수', '미분방정식', '이산구조']
+    subjects_essential = ['디자인적사고', '웹/파이선프로그래밍', '객체지향프로그래밍', '논리회로', '컴퓨터구조', '자료구조', '운영체제', '컴퓨터네트워크', '소프트웨어공학', '알고리즘분석', '데이터베이스',
+                      '오픈소스SW개발', 'IT기술영어 1', 'IT기술영어 2', 'IT기술영어 3', '캡스톤디자인 1', '캡스톤디자인 2', '졸업논문', '기계학습']
+    subjects_select = ['신호와시스템', '문제해결', '형식언어및컴파일러', '파일처리', '멀티미디어시스템', '시스템분석및설계', '프로그래밍언어구조론', 'SW스타트업비즈니스', 'SW스타트업프로젝트', '최신기술프로젝트 1',
+ '최신기술프로젝트 2', '최신기술콜로키움 1', '최신기술콜로키움 2', '단기현장실습', '장기현장실습', '연구연수활동 1', '연구연수활동 2', '독립심화학습 1', '독립심화학습 2', '인공지능', 
+ '빅데이터프로그래밍', '클라우드컴퓨팅', '데이터센터프로그래밍', '정보보호', '모바일프로그래밍', '웹서비스프로그래밍', '리눅스시스템프로그래밍', 'IoT디지털시스템', 'IoT소프트웨어', '로봇스프트웨어', '영상처리',
+ '컴퓨터그래픽스', '멀티미디어처리', '인간-컴퓨터상호작용', 'UI/UX프로그래밍', '컴퓨터비전', 'AI네트워킹', 'IoT네트워크', '딥러닝', '실전기계학습']
+ 
+    subjectss = subjects_basic + subjects_essential + subjects_select
+
+    final_list = []
+    for i in subject_table.objects.all():
+        final_list.append([
+            i.물리학및실험1, 
+            i.미분적분학, 
+            i.선형대수, 
+            i.확률및랜덤변수, 
+            i.미분방정식, 
+            i.이산구조, 
+            i.디자인적사고, 
+            i.웹파이선프로그래밍, 
+            i.객체지향프로그래밍, 
+            i.논리회로, 
+            i.컴퓨터구조, 
+            i.자료구조, 
+            i.운영체제, 
+            i.컴퓨터네트워크, 
+            i.소프트웨어공학, 
+            i.알고리즘분석, 
+            i.데이터베이스, 
+            i.오픈소스SW개발, 
+            i.IT기술영어1, 
+            i.IT기술영어2, 
+            i.IT기술영어3, 
+            i.캡스톤디자인1, 
+            i.캡스톤디자인2, 
+            i.졸업논문, 
+            i.기계학습, 
+            i.신호와시스템, 
+            i.문제해결, 
+            i.형식언어및컴파일러, 
+            i.파일처리, 
+            i.멀티미디어시스템, 
+            i.시스템분석및설계, 
+            i.프로그래밍언어구조론, 
+            i.SW스타트업비즈니스, 
+            i.SW스타트업프로젝트, 
+            i.최신기술프로젝트1, 
+            i.최신기술프로젝트2, 
+            i.최신기술콜로키움1, 
+            i.최신기술콜로키움2, 
+            i.단기현장실습, 
+            i.장기현장실습, 
+            i.연구연수활동1, 
+            i.연구연수활동2, 
+            i.독립심화학습1, 
+            i.독립심화학습2, 
+            i.인공지능, 
+            i.빅데이터프로그래밍, 
+            i.클라우드컴퓨팅, 
+            i.데이터센터프로그래밍, 
+            i.정보보호, 
+            i.모바일프로그래밍, 
+            i.웹서비스프로그래밍, 
+            i.리눅스시스템프로그래밍, 
+            i.IoT디지털시스템, 
+            i.IoT소프트웨어, 
+            i.로봇스프트웨어, 
+            i.영상처리, 
+            i.컴퓨터그래픽스, 
+            i.멀티미디어처리, 
+            i.인간컴퓨터상호작용, 
+            i.UI_UX프로그래밍, 
+            i.컴퓨터비전, 
+            i.AI네트워킹, 
+            i.IoT네트워크, 
+            i.딥러닝, 
+            i.실전기계학습]
+      )
+    
+    print(pd.DataFrame(final_list, columns = subjectss))
+    
+    
+    
+    
     if request.method =="GET":
         uid = request.GET.get("user_id",None)
         
@@ -52,6 +139,7 @@ def create_timetable(request):
 def going_lab(request):
     if request.method =="GET":
         uid = request.GET.get("user_id",None)
+        
 
 def main_login(request):
     print(request.POST)
@@ -155,20 +243,20 @@ def calculate(request):
 
     
     
-"""   
+
 def making(request):
-    subjects = pd.read_csv('sub.csv')
+    subjects = pd.read_csv('letstry.csv')
 
     for a,i in subjects.iterrows():
-        subject = everytime_table.objects.create()
-        subject.code = i[0]
-        subject.name = i[1]
-        subject.professor = i[2]
-        subject.time = i[3]
-        subject.distribution = i[4]
-        subject.save()"""
-    
-"""
+        subject = everyinfo_table.objects.create()
+        subject.code = i[2]
+        subject.name = i[4]
+        subject.professor = i[5]
+        subject.time = i[6]
+        subject.distribution = i[3]
+        subject.save()
+        
+"""   
 def making(request):
     subjects = pd.read_csv('subject.csv')
 
