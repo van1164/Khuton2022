@@ -32,6 +32,7 @@ def main_login(request):
     if request.method =="POST":
         uid = request.POST.get("userid",None)
         pw = request.POST.get("password",None)
+        print(uid,pw)
         if User.objects.filter(User_ID=uid).exists():
             n = User.objects.get(User_ID=uid)
             if n.User_password == pw:
@@ -40,10 +41,13 @@ def main_login(request):
                 queryset_json = serializers.serialize('json',queryset,fields = ('Professor','User_ID','User_password','User_name','User_email','Nick_Name','Hakgwa','score','Win','Hakbun'))
                 return JsonResponse(queryset_json,safe=False)
             else:
+                print(1)
                 return JsonResponse({'error':True})
         else:
+            print(2)
             return JsonResponse({'error':True})
     else:
+        print(3)
         return JsonResponse({'error':True})
     
 """
