@@ -23,6 +23,10 @@ class User(models.Model):
     Hakbun = models.IntegerField(default = 0)
     
 
+
+
+
+
 class Dahwe(models.Model):
     name =models.CharField(max_length = 30,verbose_name = '대회명')
     start_Date = models.DateField(default=datetime.now, blank=True)
