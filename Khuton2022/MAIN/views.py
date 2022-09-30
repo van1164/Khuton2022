@@ -138,11 +138,8 @@ def create_timetable(request):
     max = 0
     index = 0
     for a,i in data2.iterrows():
-        sim = cosine_similarity(sunwu, data2.loc[a][1:])
-        sim_list.append([data2.loc[a][0], sim])
-    if sim > max:
-        max = sim 
-        index = a
+        sim = cosine_similarity(sunwu, list(i)[1:])
+        sim_list.append([list(i)[0], sim])
         
     sim_list = sorted(sim_list, key = lambda x: x[1], reverse=True)
     print(sim_list[:4])
