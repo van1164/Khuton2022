@@ -11,7 +11,7 @@ from .serializers import TESTING
 from django.core import serializers
 from rest_framework import generics
 import pandas as pd
-
+import numpy as np
 class MiseListCreate(generics.ListCreateAPIView):
     queryset = TEST2.objects.all()
     serializer_class = TESTING
@@ -50,7 +50,19 @@ def main_login(request):
         print(3)
         return JsonResponse({'error':True})
     
+def calculate(request):
+    sunwu = [1,1,1,4,3,3,2,1,2,3,4,3,4,4,0,0,4,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    current_semester = 5
+
+    def cosine_similarity(a, b):
+        return np.dot(a, b) / (np.linalg.norm(a) * (np.linalg.norm(b)))
+
+    print(subject_table.objects.all())
+
+
     
+    
+"""   
 def making(request):
     subjects = pd.read_csv('sub.csv')
 
@@ -61,7 +73,7 @@ def making(request):
         subject.professor = i[2]
         subject.time = i[3]
         subject.distribution = i[4]
-        subject.save()
+        subject.save()"""
     
 """
 def making(request):
