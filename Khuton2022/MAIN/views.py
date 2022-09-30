@@ -57,8 +57,8 @@ def calculate(request):
     def cosine_similarity(a, b):
         return np.dot(a, b) / (np.linalg.norm(a) * (np.linalg.norm(b)))
 
-    for i in subject_table.objects.all().items():
-        print(i)
+    for i in subject_table.objects.all():
+        print(list(i))
 
 
     
