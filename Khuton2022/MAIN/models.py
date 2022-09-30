@@ -29,7 +29,7 @@ class User(models.Model):
     Hakbun = models.IntegerField(default = 0)
     
     def __str__(self) -> str:
-        return self.Hakbun + self.User_name
+        return str(self.Hakbun) + self.User_name
 
 
 
