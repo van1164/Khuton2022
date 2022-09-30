@@ -1,6 +1,5 @@
 from datetime import datetime
 from tabnanny import verbose
-from tkinter import CASCADE
 from unittest.util import _MAX_LENGTH
 from django.db import models
 from django.forms import CharField
