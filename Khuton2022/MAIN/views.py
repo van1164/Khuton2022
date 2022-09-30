@@ -150,13 +150,20 @@ def create_timetable(request):
     result = []
     for i in return_list:
         if everyinfo_table.objects.filter(name=i).exists():
+            dic=dict()
+            
             n = everyinfo_table.objects.get(name = i)
-            print(n)
-            result.append(serializers.serialize('json',n,fields = ('code','name','professor','time','distribution'),ensure_ascii=False))
             
-    
+            dic['code'] = n.code
+            dic['name'] = n.name
+            dic['professor'] = n.professor
+            dic['time'] = n.time
+            dic['distribution'] = n.distribution
             
-        
+            
+            result.append(dic)
+            
+
     return JsonResponse(result ,safe=False,json_dumps_params={'ensure_ascii': False})
     
     
