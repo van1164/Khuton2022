@@ -43,6 +43,16 @@ def create_soge(request):
         n.save()
 
 
+def create_timetable(request):
+    if request.method =="GET":
+        uid = request.GET.get("user_id",None)
+        
+        
+
+def going_lab(request):
+    if request.method =="GET":
+        uid = request.GET.get("user_id",None)
+
 def main_login(request):
     print(request.POST)
     if request.method =="POST":

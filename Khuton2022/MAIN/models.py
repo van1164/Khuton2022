@@ -30,10 +30,15 @@ class User(models.Model):
     Hakbun = models.IntegerField(default = 0)
     point = models.IntegerField(default = 0)
     etc = models.CharField(max_length= 150 , default = ' ')
+    new_message = models.BooleanField(default = False)
     def __str__(self) -> str:
         return str(self.Hakbun) + self.User_name
 
-
+class message_box(models.Model):
+    title = models.CharField(max_length=20,unique=True,verbose_name='아이디')
+    sender = models.CharField(max_length=16,verbose_name='이름')
+    recieve_date = models.DateTimeField(default = datetime.now)
+    
 class everytime_table(models.Model):
     code = models.CharField(max_length = 30)
     name = models.CharField(max_length = 40)
