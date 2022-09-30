@@ -10,6 +10,7 @@ urlpatterns = [
     #path('making',views.making),
     path('login', views.main_login),
     path('calculate',views.calculate),
-    path('user',views.user_get)
+    path('user',views.user_get),
+    path('soge',views.create_soge)
     
 ]

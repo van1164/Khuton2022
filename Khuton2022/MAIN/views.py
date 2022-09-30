@@ -41,9 +41,7 @@ def create_soge(request):
         n = User.objects.get(User_ID=uid)
         n.etc = etc
         n.save()
-        queryset = User.objects.filter(User_ID=uid)
-        queryset_json = serializers.serialize('json',queryset,fields = ('Professor','User_ID','User_password','User_name','User_email','Nick_Name','Hakgwa','score','Win','Hakbun','etc'),ensure_ascii=False)
-        return JsonResponse(queryset_json,safe=False,json_dumps_params={'ensure_ascii': False})
+
 
 def main_login(request):
     print(request.POST)
