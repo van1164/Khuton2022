@@ -52,7 +52,7 @@ def main_login(request):
     
     
 def making(request):
-    subjects = pd.read_excel('subject.xls',encoding = 'utf-8')
+    subjects = pd.read_csv('sub.csv')
 
     for a,i in subjects.iterrows():
         subject = everytime_table.objects.create()
