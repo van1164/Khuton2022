@@ -156,25 +156,29 @@ def create_timetable(request):
     print(return_list2)
     
     result = []
-    for i in return_list:
-        if everyinfo_table.objects.filter(name=i).exists():
+    result2 = []
+    for o, return_list3 in enumerate(return_list2):
+        for i in return_list3[1]:
+            if everyinfo_table.objects.filter(name=i).exists():
 
-            
-            n = everyinfo_table.objects.filter(name = i)
-            
-            for k in n:
-                dic=dict()
-                dic['code'] = k.code
-                dic['name'] = k.name
-                dic['professor'] = k.professor
-                dic['time'] = k.time
-                dic['distribution'] = k.distribution
-            
-            
-                result.append(dic)
+                
+                n = everyinfo_table.objects.filter(name = i)
+                
+                for k in n:
+                    dic=dict()
+                    dic['code'] = k.code
+                    dic['name'] = k.name
+                    dic['professor'] = k.professor
+                    dic['time'] = k.time
+                    dic['distribution'] = k.distribution
+                
+                
+                    result.append(dic)
+        result2['{}'.format(o)] = result
+        result = []
             
 
-    return JsonResponse(result ,safe=False,json_dumps_params={'ensure_ascii': False})
+    return JsonResponse(result2 ,safe=False,json_dumps_params={'ensure_ascii': False})
     
     
     if request.method =="GET":
