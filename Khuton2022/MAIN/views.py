@@ -46,14 +46,14 @@ def create_soge(request):
 
 def create_timetable(request):
     
-    subjects_basic = ['물리학및실험 1', '미분적분학', '선형대수', '확률및랜덤변수', '미분방정식', '이산구조']
+    subjects_basic = ['물리학및실험1', '미분적분학', '선형대수', '확률및랜덤변수', '미분방정식', '이산구조']
     subjects_essential = ['디자인적사고', '웹/파이선프로그래밍', '객체지향프로그래밍', '논리회로', '컴퓨터구조', '자료구조', '운영체제', '컴퓨터네트워크', '소프트웨어공학', '알고리즘분석', '데이터베이스',
-                      '오픈소스SW개발', 'IT기술영어 1', 'IT기술영어 2', 'IT기술영어 3', '캡스톤디자인 1', '캡스톤디자인 2', '졸업논문', '기계학습']
-    subjects_select = ['신호와시스템', '문제해결', '형식언어및컴파일러', '파일처리', '멀티미디어시스템', '시스템분석및설계', '프로그래밍언어구조론', 'SW스타트업비즈니스', 'SW스타트업프로젝트', '최신기술프로젝트 1',
- '최신기술프로젝트 2', '최신기술콜로키움 1', '최신기술콜로키움 2', '단기현장실습', '장기현장실습', '연구연수활동 1', '연구연수활동 2', '독립심화학습 1', '독립심화학습 2', '인공지능', 
- '빅데이터프로그래밍', '클라우드컴퓨팅', '데이터센터프로그래밍', '정보보호', '모바일프로그래밍', '웹서비스프로그래밍', '리눅스시스템프로그래밍', 'IoT디지털시스템', 'IoT소프트웨어', '로봇스프트웨어', '영상처리',
- '컴퓨터그래픽스', '멀티미디어처리', '인간-컴퓨터상호작용', 'UI/UX프로그래밍', '컴퓨터비전', 'AI네트워킹', 'IoT네트워크', '딥러닝', '실전기계학습']
- 
+                        '오픈소스SW개발', 'IT기술영어1', 'IT기술영어2', 'IT기술영어3', '캡스톤디자인1', '캡스톤디자인2', '졸업논문', '기계학습']
+    subjects_select = ['신호와시스템', '문제해결', '형식언어및컴파일러', '파일처리', '멀티미디어시스템', '시스템분석및설계', '프로그래밍언어구조론', 'SW스타트업비즈니스', 'SW스타트업프로젝트', '최신기술프로젝트1',
+    '최신기술프로젝트2', '최신기술콜로키움1', '최신기술콜로키움2', '단기현장실습', '장기현장실습', '연구연수활동1', '연구연수활동2', '독립심화학습1', '독립심화학습2', '인공지능', 
+    '빅데이터프로그래밍', '클라우드컴퓨팅', '데이터센터프로그래밍', '정보보호', '모바일프로그래밍', '웹서비스프로그래밍', '리눅스시스템프로그래밍', 'IoT디지털시스템', 'IoT소프트웨어', '로봇스프트웨어', '영상처리',
+    '컴퓨터그래픽스', '멀티미디어처리', '인간-컴퓨터상호작용', 'UI/UX프로그래밍', '컴퓨터비젼', 'AI네트워킹', 'IoT네트워크', '딥러닝', '실전기계학습']
+    
     subjectss = subjects_basic + subjects_essential + subjects_select
 
     final_list = []
@@ -180,82 +180,6 @@ def main_login(request):
         print(3)
         return JsonResponse({'error':True})
     
-def calculate(request):
-    sunwu = [1,1,1,4,3,3,2,1,2,3,4,3,4,4,0,0,4,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-    current_semester = 5
-
-    def cosine_similarity(a, b):
-        return np.dot(a, b) / (np.linalg.norm(a) * (np.linalg.norm(b)))
-
-    for i in subject_table.objects.all():
-        data = [
-        pd.DataFrame(list(i.물리학및실험1)), 
-        pd.DataFrame(list(i.미분적분학)), 
-        pd.DataFrame(list(i.선형대수)), 
-        pd.DataFrame(list(i.확률및랜덤변수)), 
-        pd.DataFrame(list(i.미분방정식)), 
-        pd.DataFrame(list(i.이산구조)), 
-        pd.DataFrame(list(i.디자인적사고)), 
-        pd.DataFrame(list(i.웹파이선프로그래밍)), 
-        pd.DataFrame(list(i.객체지향프로그래밍)), 
-        pd.DataFrame(list(i.논리회로)), 
-        pd.DataFrame(list(i.컴퓨터구조)), 
-        pd.DataFrame(list(i.자료구조)), 
-        pd.DataFrame(list(i.운영체제)), 
-        pd.DataFrame(list(i.컴퓨터네트워크)), 
-        pd.DataFrame(list(i.소프트웨어공학)), 
-        pd.DataFrame(list(i.알고리즘분석)), 
-        pd.DataFrame(list(i.데이터베이스)), 
-        pd.DataFrame(list(i.오픈소스SW개발)), 
-        pd.DataFrame(list(i.IT기술영어1)), 
-        pd.DataFrame(list(i.IT기술영어2)), 
-        pd.DataFrame(list(i.IT기술영어3)), 
-        pd.DataFrame(list(i.캡스톤디자인1)), 
-        pd.DataFrame(list(i.캡스톤디자인2)), 
-        pd.DataFrame(list(i.졸업논문)), 
-        pd.DataFrame(list(i.기계학습)), 
-        pd.DataFrame(list(i.신호와시스템)), 
-        pd.DataFrame(list(i.문제해결)), 
-        pd.DataFrame(list(i.형식언어및컴파일러)), 
-        pd.DataFrame(list(i.파일처리)), 
-        pd.DataFrame(list(i.멀티미디어시스템)), 
-        pd.DataFrame(list(i.시스템분석및설계)), 
-        pd.DataFrame(list(i.프로그래밍언어구조론)), 
-        pd.DataFrame(list(i.SW스타트업비즈니스)), 
-        pd.DataFrame(list(i.SW스타트업프로젝트)), 
-        pd.DataFrame(list(i.최신기술프로젝트1)), 
-        pd.DataFrame(list(i.최신기술프로젝트2)), 
-        pd.DataFrame(list(i.최신기술콜로키움1)), 
-        pd.DataFrame(list(i.최신기술콜로키움2)), 
-        pd.DataFrame(list(i.단기현장실습)), 
-        pd.DataFrame(list(i.장기현장실습)), 
-        pd.DataFrame(list(i.연구연수활동1)), 
-        pd.DataFrame(list(i.연구연수활동2)), 
-        pd.DataFrame(list(i.독립심화학습1)), 
-        pd.DataFrame(list(i.독립심화학습2)), 
-        pd.DataFrame(list(i.인공지능)), 
-        pd.DataFrame(list(i.빅데이터프로그래밍)), 
-        pd.DataFrame(list(i.클라우드컴퓨팅)), 
-        pd.DataFrame(list(i.데이터센터프로그래밍)), 
-        pd.DataFrame(list(i.정보보호)), 
-        pd.DataFrame(list(i.모바일프로그래밍)), 
-        pd.DataFrame(list(i.웹서비스프로그래밍)), 
-        pd.DataFrame(list(i.리눅스시스템프로그래밍)), 
-        pd.DataFrame(list(i.IoT디지털시스템)), 
-        pd.DataFrame(list(i.IoT소프트웨어)), 
-        pd.DataFrame(list(i.로봇스프트웨어)), 
-        pd.DataFrame(list(i.영상처리)), 
-        pd.DataFrame(list(i.컴퓨터그래픽스)), 
-        pd.DataFrame(list(i.멀티미디어처리)), 
-        pd.DataFrame(list(i.인간컴퓨터상호작용)), 
-        pd.DataFrame(list(i.UI_UX프로그래밍)), 
-        pd.DataFrame(list(i.컴퓨터비전)), 
-        pd.DataFrame(list(i.AI네트워킹)), 
-        pd.DataFrame(list(i.IoT네트워크)), 
-        pd.DataFrame(list(i.딥러닝)), 
-        pd.DataFrame(list(i.실전기계학습))]
-
-        print(pd.concat(data,axis=1))
 
     
     
