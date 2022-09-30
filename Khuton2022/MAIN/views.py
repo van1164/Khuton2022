@@ -139,7 +139,7 @@ def create_timetable(request):
     index = 0
     for a,i in data2.iterrows():
         sim = cosine_similarity(sunwu, data2.loc[a][1:])
-        sim_list.append([i.student_ID, sim])
+        sim_list.append([data2.loc[a][0], sim])
     if sim > max:
         max = sim 
         index = a
