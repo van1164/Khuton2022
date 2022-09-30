@@ -24,7 +24,7 @@ class test(generics.ListCreateAPIView):
 
 def test_main(request):
     queryset = TEST2.objects.all()
-    queryset_json = serializers.serialize('json',queryset)
+    queryset_json = serializers.serialize('json',queryset,fields = ('id','test','content','updated_at'))
     return JsonResponse(queryset_json,safe=False)
 
 
