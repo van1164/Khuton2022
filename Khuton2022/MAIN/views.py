@@ -27,6 +27,24 @@ class login(generics.ListCreateAPIView):
     serializer_class = TESTING
 
 
+def user_get(request):
+    if request.method =="GET":
+        uid = request.GET.get("user_id",None)
+        queryset = User.objects.filter(User_ID=uid)
+        queryset_json = serializers.serialize('json',queryset,fields = ('Professor','User_ID','User_password','User_name','User_email','Nick_Name','Hakgwa','score','Win','Hakbun','etc'),ensure_ascii=False)
+        return JsonResponse(queryset_json,safe=False,json_dumps_params={'ensure_ascii': False})
+
+def create_soge(request):
+    if request.method =="POST":
+        uid = request.POST.get("userid",None)
+        etc = request.POST.get("etc",None)
+        n = User.objects.get(User_ID=uid)
+        n.etc = etc
+        n.save()
+        queryset = User.objects.filter(User_ID=uid)
+        queryset_json = serializers.serialize('json',queryset,fields = ('Professor','User_ID','User_password','User_name','User_email','Nick_Name','Hakgwa','score','Win','Hakbun','etc'),ensure_ascii=False)
+        return JsonResponse(queryset_json,safe=False,json_dumps_params={'ensure_ascii': False})
+
 def main_login(request):
     print(request.POST)
     if request.method =="POST":
