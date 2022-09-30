@@ -28,7 +28,8 @@ class login(generics.ListCreateAPIView):
 
 
 from django.views.decorators.csrf import csrf_exempt
-@csrf_exempt
+from django.utils.decorators import method_decorator
+@method_decorator(csrf_exempt,name='dispatch')
 def main_login(request):
     print(request.POST)
     if request.method =="POST":
