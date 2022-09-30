@@ -139,21 +139,20 @@ def create_timetable(request):
     index = 0
     for a,i in data2.iterrows():
         sim = cosine_similarity(sunwu, list(i)[1:])
-        sim_list.append(sim)
-    
-    sim_list = np.array(sim_list)
-    sim_list2 = sim_list.argsort()[::-1]
+        sim_list.append([list(i)[0], sim])
+        
+    sim_list = sorted(sim_list, key = lambda x: x[1], reverse=True)
+    #print(sim_list[:4])
 
     return_list = []
     return_list2 = []
-    for j in sim_list2[:4]:
-        for a, i in enumerate(zip(data2.iloc[j][1:], sunwu)):
+    for i in sim_list[:4]:
+        for a, i in enumerate(zip(data2.iloc[i[0]][2:], sunwu)):
             if i[0] <= current_semester and i[0] > 0 and i[1] == 0:
                 return_list.append(subjectss[a])
-        return_list2.append(return_list)
-    
-    print("sim_list: ", sim_list2)
-    print("return_list2: ", return_list2)
+        return_list2.append([i[0], return_list])
+            
+    #print(return_list2)
     
     result = []
     result2 = dict()
