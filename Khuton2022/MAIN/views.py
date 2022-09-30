@@ -151,6 +151,7 @@ def create_timetable(request):
     for i in return_list:
         if everyinfo_table.objects.filter(name=i).exists():
             n = everyinfo_table.objects.get(name = i)
+            print(n)
             result.append(serializers.serialize('json',n,fields = ('code','name','professor','time','distribution'),ensure_ascii=False))
             
     
