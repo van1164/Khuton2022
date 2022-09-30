@@ -16,7 +16,7 @@ class Dahwe(models.Model):
         return self.name
 
 class User(models.Model):
-    SorP = models.BooleanField()
+    Professor = models.BooleanField()
     User_ID = models.CharField(max_length=20,unique=True,verbose_name='아이디')
     User_password=  models.CharField(max_length=20)
     User_name = models.CharField(max_length=16,verbose_name='이름')
