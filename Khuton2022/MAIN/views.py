@@ -156,7 +156,7 @@ def create_timetable(request):
     print(return_list2)
     
     result = []
-    result2 = []
+    result2 = dict()
     for o, return_list3 in enumerate(return_list2):
         for i in return_list3[1]:
             if everyinfo_table.objects.filter(name=i).exists():
