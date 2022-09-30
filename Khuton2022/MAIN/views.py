@@ -166,7 +166,7 @@ def create_timetable(request):
                 dic['distribution'] = k.distribution
                 
                 
-                result = dic
+                result.append(dic)
             
 
     return JsonResponse(result ,safe=False,json_dumps_params={'ensure_ascii': False})
