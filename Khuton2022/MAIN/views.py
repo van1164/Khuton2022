@@ -27,7 +27,8 @@ class login(generics.ListCreateAPIView):
     serializer_class = TESTING
 
 
-
+from django.views.decorators.csrf import csrf_exempt
+@csrf_exempt
 def main_login(request):
     if request.method =="POST":
         uid = request.POST.get("userid",None)
