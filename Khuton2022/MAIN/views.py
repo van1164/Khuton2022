@@ -58,7 +58,7 @@ def calculate(request):
         return np.dot(a, b) / (np.linalg.norm(a) * (np.linalg.norm(b)))
 
     for i in subject_table.objects.all():
-        print(list(i))
+        print(i.물리학및실험1)
 
 
     
