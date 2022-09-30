@@ -28,7 +28,7 @@ class User(models.Model):
     score = models.DecimalField(max_digits=3,decimal_places=2)
     Win = models.ManyToManyField(Dahwe)
     Hakbun = models.IntegerField(default = 0)
-    
+    point = models.IntegerField(default = 0)
     def __str__(self) -> str:
         return str(self.Hakbun) + self.User_name
 
