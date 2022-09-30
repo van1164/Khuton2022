@@ -139,11 +139,11 @@ def create_timetable(request):
     sim_list = []
 
     for a,i in data2.iterrows():
-    sim = cosine_similarity(sunwu, list(i)[1:])
-    sim_list.append(sim)
-    if sim > max:
-        max = sim 
-        index = a
+        sim = cosine_similarity(sunwu, list(i)[1:])
+        sim_list.append(sim)
+        if sim > max:
+            max = sim 
+            index = a
 
     return_list = []
     for a, i in enumerate(zip(list(data2.iloc[index][1:]), sunwu)):
