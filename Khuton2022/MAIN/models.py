@@ -33,7 +33,12 @@ class User(models.Model):
         return str(self.Hakbun) + self.User_name
 
 
-
+class everytime_table(models.Model):
+    code = models.CharField(max_length = 30)
+    name = models.CharField(max_length = 40)
+    professor  = models.CharField(max_length = 30)
+    time = models.CharField(max_length = 70)
+    distribution = models.CharField(max_length = 30)    
 
 
 class subject_table(models.Model):

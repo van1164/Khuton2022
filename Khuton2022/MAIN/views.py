@@ -6,7 +6,7 @@ from django.utils import timezone
 from django.contrib import messages
 from requests import Response
 from rest_framework.views import APIView
-from .models import TEST2,subject_table,User
+from .models import TEST2,subject_table,User,everytime_table
 from .serializers import TESTING
 from django.core import serializers
 from rest_framework import generics
@@ -49,6 +49,19 @@ def main_login(request):
     else:
         print(3)
         return JsonResponse({'error':True})
+    
+    
+def making(request):
+    subjects = pd.read_excel('subject.xls',encoding = 'utf-8')
+
+    for a,i in subjects.iterrows():
+        subject = everytime_table.objects.create()
+        subject.code = i[0]
+        subject.name = i[1]
+        subject.professor = i[2]
+        subject.time = i[3]
+        subject.distribution = i[4]
+        subject.save()
     
 """
 def making(request):
