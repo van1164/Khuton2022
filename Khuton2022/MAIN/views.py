@@ -40,8 +40,12 @@ def main_login(request):
                 return JsonResponse(queryset_json,safe=False)
             else:
                 return JsonResponse({'error':True})
+        else:
+            return JsonResponse({'error':True})
+    else:
         return JsonResponse({'error':True})
-
+    
+"""
 def making(request):
     subjects = pd.read_csv('subject.csv')
 
@@ -113,7 +117,7 @@ def making(request):
         subject.딥러닝 = i[65]
         subject.실전기계학습 = i[66]
         subject.save()
-
+"""
 
 
 def test_main(request):
