@@ -146,7 +146,7 @@ def create_timetable(request):
 
     return_list = []
     return_list2 = []
-    for i in sim_list[:4]:
+    for i in sim_list[:1]:
         for a, i in enumerate(zip(data2.iloc[i[0]][2:], sunwu)):
             if i[0] <= current_semester and i[0] > 0 and i[1] == 0:
                 return_list.append(subjectss[a])
@@ -155,29 +155,25 @@ def create_timetable(request):
     #print(return_list2)
     
     result = []
-    result2 = dict()
-    for o, return_list3 in enumerate(return_list2):
-        for i in return_list3[1]:
-            if everyinfo_table.objects.filter(name=i).exists():
+    for i in return_list2[1]:
+        if everyinfo_table.objects.filter(name=i).exists():
 
                 
-                n = everyinfo_table.objects.filter(name = i)
+            n = everyinfo_table.objects.filter(name = i)
                 
-                for k in n:
-                    dic=dict()
-                    dic['code'] = k.code
-                    dic['name'] = k.name
-                    dic['professor'] = k.professor
-                    dic['time'] = k.time
-                    dic['distribution'] = k.distribution
+            for k in n:
+                dic=dict()
+                dic['code'] = k.code
+                dic['name'] = k.name
+                dic['professor'] = k.professor
+                dic['time'] = k.time
+                dic['distribution'] = k.distribution
                 
                 
-                    result.append(dic)
-        result2['{}'.format(o)] = result
-        result = []
+                result = dic
             
 
-    return JsonResponse(result2 ,safe=False,json_dumps_params={'ensure_ascii': False})
+    return JsonResponse(result ,safe=False,json_dumps_params={'ensure_ascii': False})
     
     
     if request.method =="GET":
