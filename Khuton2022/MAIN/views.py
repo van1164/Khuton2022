@@ -146,11 +146,11 @@ def create_timetable(request):
 
     return_list = []
     return_list2 = []
-    for i in sim_list2[:4]:
-        for a, i in enumerate(zip(data2.iloc[i[0]][2:], sunwu)):
+    for j in sim_list2[:4]:
+        for a, i in enumerate(zip(data2.iloc[j][1:], sunwu)):
             if i[0] <= current_semester and i[0] > 0 and i[1] == 0:
                 return_list.append(subjectss[a])
-        return_list2.append([i[0], return_list])
+        return_list2.append(return_list)
     
     print("sim_list: ", sim_list2)
     print("return_list2: ", return_list2)
