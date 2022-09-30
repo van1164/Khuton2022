@@ -7,6 +7,6 @@ urlpatterns = [
     path("test",views.test.as_view(),name='test'),
     path('app01/map_main', views.MiseListCreate.as_view()),
     path('app02/map_main', views.MiseListCreate),
-    
+    path('making',views.making)
     
 ]
