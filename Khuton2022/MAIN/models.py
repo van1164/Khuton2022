@@ -14,6 +14,7 @@ class Dahwe(models.Model):
     
     def __str__(self) -> str:
         return self.name
+    
 
 class User(models.Model):
     Professor = models.BooleanField()
@@ -27,6 +28,8 @@ class User(models.Model):
     Win = models.ManyToManyField(Dahwe)
     Hakbun = models.IntegerField(default = 0)
     
+    def __str__(self) -> str:
+        return self.Hakbun + self.User_name
 
 
 
