@@ -134,23 +134,21 @@ def create_timetable(request):
     def cosine_similarity(a, b):
         return np.dot(a, b) / (np.linalg.norm(a) * (np.linalg.norm(b)))
 
-    sim_list = []
     max = 0
     index = 0
-    for a,i in data2.iterrows():
-        sim = cosine_similarity(sunwu, list(i)[1:])
-        sim_list.append([list(i)[0], sim])
-        
-    sim_list = sorted(sim_list, key = lambda x: x[1], reverse=True)
-    #print(sim_list[:4])
+    sim_list = []
+
+    for a,i in subjects.iterrows():
+    sim = cosine_similarity(sunwu, list(i))
+    sim_list.append(sim)
+    if sim > max:
+        max = sim 
+        index = a
 
     return_list = []
-    for i in sim_list[:1]:
-        for a, i in enumerate(zip(data2.iloc[i[0]][2:], sunwu)):
-            if i[0] <= current_semester and i[0] > 0 and i[1] == 0:
-                return_list.append(subjectss[a])
-            
-    #print(return_list2)
+    for a, i in enumerate(zip(list(subjects.iloc[index]), sunwu)):
+        if i[0] <= current_semester and i[0] > 0 and i[1] == 0:
+            return_list.append(subjectss[a])
     
     result = []
     for i in return_list:
