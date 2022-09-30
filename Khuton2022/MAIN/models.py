@@ -7,6 +7,13 @@ from django.forms import CharField
 # Create your models here.
 
 
+class Dahwe(models.Model):
+    name =models.CharField(max_length = 30,verbose_name = '대회명')
+    start_Date = models.DateField(default=datetime.now, blank=True)
+    end_Date = models.DateField(default=datetime.now, blank=True)
+    
+    def __str__(self) -> str:
+        return self.name
 
 class User(models.Model):
     SorP = models.BooleanField()
@@ -17,7 +24,7 @@ class User(models.Model):
     Nick_Name = models.CharField(max_length=20,unique=True,verbose_name='닉네임')
     Hakgwa = models.CharField(max_length=20,unique=True,verbose_name='학과')
     score = models.DecimalField(max_digits=3,decimal_places=2)
-    Win = models.ForeignKey('Dahwe',on_delete=models.CASCADE)
+    Win = models.ManyToManyField(Dahwe)
     Hakbun = models.IntegerField(default = 0)
     
 
@@ -25,10 +32,6 @@ class User(models.Model):
 
 
 
-class Dahwe(models.Model):
-    name =models.CharField(max_length = 30,verbose_name = '대회명')
-    start_Date = models.DateField(default=datetime.now, blank=True)
-    end_Date = models.DateField(default=datetime.now, blank=True)
     
     
 class TimeTable(models.Model):
