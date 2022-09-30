@@ -30,13 +30,13 @@ class login(generics.ListCreateAPIView):
 from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
 def main_login(request):
-    print(request.method)
+    print(request.method,request.POST.get("userid",None),request.POST.get("password",None))
     if request.method =="POST":
         uid = request.POST.get("userid",None)
         pw = request.POST.get("password",None)
         if User.objects.filter(User_ID=uid).exists():
             n = User.objects.get(User_ID=uid)
-            if n.password == pw:
+            if n.User_password == pw:
                 queryset = User.objects.get(User_ID=uid)
                 queryset_json = serializers.serialize('json',queryset,fields = ('Professor','User_ID','User_password','User_name','User_email','Nick_Name','Hakgwa','score','Win','Hakbun'))
                 return JsonResponse(queryset_json,safe=False)
