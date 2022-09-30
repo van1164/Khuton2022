@@ -138,12 +138,10 @@ def create_timetable(request):
     max = 0
     index = 0
     for a,i in data2.iterrows():
-        print(list(i))
         sim = cosine_similarity(sunwu, list(i)[1:])
         sim_list.append([list(i)[0], sim])
         
-    sim_list = sorted(sim_list, key = lambda x: x[1], reverse=True)
-    print(sim_list[:4])
+    sim_list = np.argsort(sim_list, key = lambda x: x[1], reverse=True)
 
     return_list = []
     return_list2 = []
@@ -153,7 +151,6 @@ def create_timetable(request):
                 return_list.append(subjectss[a])
         return_list2.append([i[0], return_list])
             
-    print(return_list2)
     
     result = []
     result2 = dict()
