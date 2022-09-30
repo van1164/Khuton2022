@@ -35,16 +35,16 @@ class User(models.Model):
 
 
 
-    
+class subject_table(models.Model):
+    subject_code = models.IntegerField(default = 0)
     
 class TimeTable(models.Model):
-    subject_table = models.ForeignKey('subject_table',on_delete=models.CASCADE)
+    subject_table = models.ManyToManyField(subject_table)
     job = models.CharField(max_length = 30)
     category = models.IntegerField(default = 0)
     company   = models.IntegerField(default = 0)
     
-class subject_table(models.Model):
-    subject_code = models.IntegerField(default = 0)
+
 
 class TEST2(models.Model):
     test= models.CharField(max_length=50)
