@@ -316,6 +316,9 @@ def test_main(request):
     queryset_json = serializers.serialize('json',queryset,fields = ('id','test','content','updated_at'))
     return JsonResponse(queryset_json,safe=False)
 
+def new_main(request):
+    return render(request,'main_test.html',{})
+
 
 def main_page(request):
     user_id = request.session.get('user')
