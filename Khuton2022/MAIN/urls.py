@@ -8,6 +8,7 @@ urlpatterns = [
     path('app01/map_main', views.MiseListCreate.as_view()),
     path('app02/map_main', views.MiseListCreate),
     path('making',views.making),
+    path('making_subject',views.making_subject_table),
     path('login', views.main_login),
     path('user',views.user_get),
     path('soge',views.create_soge),

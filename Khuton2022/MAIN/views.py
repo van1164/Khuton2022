@@ -236,8 +236,8 @@ def making(request):
         subject.distribution = i[3]
         subject.save()
         
-"""   
-def making(request):
+
+def making_subject_table(request):
     subjects = pd.read_csv('subject.csv')
 
     for a,i in subjects.iterrows():
@@ -308,7 +308,7 @@ def making(request):
         subject.딥러닝 = i[65]
         subject.실전기계학습 = i[66]
         subject.save()
-"""
+
 
 
 def test_main(request):
